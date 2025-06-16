@@ -1,0 +1,49 @@
+.stepper-container {
+  padding: 2rem;
+  font-family: sans-serif;
+}
+
+.stepper-box {
+  display: flex;
+  gap: 1rem;
+}
+
+.step {
+  flex: 1;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.step.done {
+  background-color: #4caf50;
+}
+
+.step.current {
+  background-color: #2196f3;
+}
+
+.step.pending {
+  background-color: #bdbdbd;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.step-info {
+  margin-top: 2rem;
+  font-size: 1.2rem;
+}
+
+.step-button {
+  margin-top: 1rem;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
