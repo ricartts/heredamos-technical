@@ -1,12 +1,66 @@
-# React + Vite
+# 🧾 Heredamos Stepper Component
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and interactive React stepper component designed for an inheritance management portal. It guides users through multiple steps (e.g., document upload, legal review, signature, confirmation) with clear visual feedback and state persistence.
 
-Currently, two official plugins are available:
+## 📦 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ✅ React (Vite)
+- ✅ Vanilla CSS (modular and customizable)
+- ✅ `localStorage` for state persistence
 
-## Expanding the ESLint configuration
+## 🧠 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Step-by-step process navigation.
+- "Next Step" logic with controlled progression.
+- Ability to go back to previous steps.
+- Unlocked steps remain accessible even after returning.
+- Final step shows a loading spinner and a success message.
+- Persistent state across page refreshes.
+- "Restart" button to reset the entire flow.
+
+## 🖼️ Preview
+
+![screenshot](./public/readme.png) <!-- Optional: add a screenshot if available -->
+
+## 🚀 Getting Started
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/your-username/heredamos-stepper.git
+cd heredamos-stepper
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Run the development server
+
+```bash
+npm run dev
+```
+
+Open `http://localhost:5173` in your browser.
+
+## 📄 Usage
+
+The component is self-contained. You can import and use it in your app like this:
+
+```jsx
+import Stepper from "./components/Stepper";
+
+function App() {
+  return <Stepper />;
+}
+```
+
+## 🔄 Resetting Progress
+
+To restart the flow from scratch, click the `Restart` button at the end, or manually clear `localStorage`:
+
+```js
+localStorage.removeItem("stepperState");
+```
