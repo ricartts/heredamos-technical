@@ -1,10 +1,6 @@
 import Stepper from "./components/Stepper/Stepper.jsx";
 function App() {
-  return (
-    <div>
-      <Stepper />
-    </div>
-  );
+  return <Stepper />;
 }
 
 export default App;
