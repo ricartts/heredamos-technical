@@ -1,22 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Stepper.css";
 
 const steps = ["Upload Documents", "Legal Review", "Signature", "Confirmation"];
 
 const Stepper = () => {
-  const currentStep = parseInt(localStorage.getItem("currentStep") || "0", 10);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [maxUnlockedStep, setMaxUnlockedStep] = useState(0);
+
+  useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem("stepperState"));
+    if (stored) {
+      setCurrentStep(stored.currentStep);
+      setMaxUnlockedStep(stored.maxUnlockedStep);
+    }
+  }, []);
+
+  const saveState = (step, maxStep) => {
+    localStorage.setItem(
+      "stepperState",
+      JSON.stringify({
+        currentStep: step,
+        maxUnlockedStep: maxStep,
+      })
+    );
+  };
 
   const goToStep = (index) => {
-    if (index <= currentStep + 1) {
-      localStorage.setItem("currentStep", index);
-      window.location.reload();
+    if (index <= maxUnlockedStep) {
+      setCurrentStep(index);
+      saveState(index, maxUnlockedStep);
     }
   };
 
   const nextStep = () => {
     if (currentStep < steps.length - 1) {
-      localStorage.setItem("currentStep", currentStep + 1);
-      window.location.reload();
+      const newStep = currentStep + 1;
+      const newMax = Math.max(maxUnlockedStep, newStep);
+      setCurrentStep(newStep);
+      setMaxUnlockedStep(newMax);
+      saveState(newStep, newMax);
     }
   };
 
@@ -27,7 +49,13 @@ const Stepper = () => {
         {steps.map((step, index) => {
           let status = "pending";
           if (index < currentStep) status = "done";
-          else if (index === currentStep) status = "current";
+          if (index === currentStep) {
+            status = "current";
+          } else if (index <= maxUnlockedStep) {
+            status = "done";
+          } else {
+            status = "pending";
+          }
 
           return (
             <div

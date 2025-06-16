@@ -26,6 +26,10 @@
   background-color: #2196f3;
 }
 
+.step.unlocked {
+  background-color: #9e9e9e;
+}
+
 .step.pending {
   background-color: #bdbdbd;
   cursor: not-allowed;
